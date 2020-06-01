@@ -14,8 +14,8 @@ import javax.ws.rs.core.MediaType;
 public class InjectDemoResource {
 	
 	public String getParamsUsingAnnotations(@MatrixParam("param") String matrixParam,
-			                                @HeaderParam("param") String headerParam,
-			                                @CookieParam("param") String cookieParam) {
+			                                @HeaderParam("authSessionID") String headerParam,
+			                                @CookieParam("name") String cookieParam) {
 		
 		
 		return "Matrix Param : " + matrixParam + "Header Param : " + headerParam + "Cookie Param : " + cookieParam;
