@@ -9,9 +9,7 @@ import simplefix.Application;
 import simplefix.Engine;
 import simplefix.EngineFactory;
 import simplefix.Message;
-import simplefix.MsgType;
 import simplefix.Session;
-import simplefix.Tag;
 
 public class FIXServiceImpl implements FIXService {
 
@@ -74,19 +72,6 @@ public class FIXServiceImpl implements FIXService {
 
 		@Override
 		public void onLogon(final Session sessionId) {
-			Message ordMsg = _engineFact.createMessage(MsgType.ORDER_SINGLE);
-
-			ordMsg.setValue(Tag.ClOrdID, "Cld-1234");
-			ordMsg.setValue(Tag.Symbol, "6758");
-			ordMsg.setValue(Tag.Side, "1");
-			ordMsg.setValue(Tag.OrderQty, "1000");
-			ordMsg.setValue(Tag.Price, "123.45");
-			ordMsg.setValue(Tag.OrdType, "2");
-			ordMsg.setValue(Tag.HandlInst, "3");
-
-			ordMsg.setValue(Tag.TransactTime, "20200508-04:36:42");
-
-			sessionId.sendAppMessage(ordMsg);
 
 		}
 
