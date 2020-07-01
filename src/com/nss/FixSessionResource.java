@@ -9,18 +9,30 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import com.nss.model.Session;
+
 @Path("/sessions")
 public class FixSessionResource {
 	
 		@GET
-		@Produces(MediaType.TEXT_PLAIN)
-		public String getSessions(@Context ServletContext servletContext) {
+		@Path("/list")
+		@Produces(MediaType.APPLICATION_JSON)
+		public List<String> getSessionList(@Context ServletContext servletContext) {
 			
 			FIXService fixService = (FIXService) servletContext.getAttribute("FIX_Service");
 			
 			List<String> sessionList = fixService.getSessionList();
-			
-			return sessionList.toString();
+			return sessionList;
 		}
-
+		
+		@GET
+		@Produces(MediaType.APPLICATION_JSON)
+		public List<Session> getSessions(@Context ServletContext servletContext) {
+			
+			FIXService fixService = (FIXService) servletContext.getAttribute("FIX_Service");
+			
+			List<Session> sessionList = fixService.getSessions();
+			
+			return sessionList;
+		}		
 }
