@@ -1,26 +1,41 @@
 package com.nss.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Order {
 	
 	private String ClOrdID;
+	private String OrigClOrdID;
+	private String MsgType;
 	private String Symbol;
+	private String OrdType;
+	private String HandlInst;
 	private String Side;
 	private String OrderQty;
 	private String Price;
-	private String OrdType;
-	private String HandlInst;
+	private String Currency;
 	private String TransactTime;
+	private String Session;
 	
-	public Order(String clOrdID, String symbol, String side, String orderQty, String price, String ordType,
-			String handlInst, String transactTime) {
+	public Order(String clOrdID, String origClOrdID, String msgType, String symbol, String ordType, String handlInst,
+			String side, String orderQty, String price, String currency, String transactTime, String session) {
+		super();
 		ClOrdID = clOrdID;
+		OrigClOrdID = origClOrdID;
+		MsgType = msgType;
 		Symbol = symbol;
+		OrdType = ordType;
+		HandlInst = handlInst;
 		Side = side;
 		OrderQty = orderQty;
 		Price = price;
-		OrdType = ordType;
-		HandlInst = handlInst;
+		Currency = currency;
 		TransactTime = transactTime;
+		Session = session;
 	}
 
 	public String getClOrdID() {
@@ -31,12 +46,44 @@ public class Order {
 		ClOrdID = clOrdID;
 	}
 
+	public String getOrigClOrdID() {
+		return OrigClOrdID;
+	}
+
+	public void setOrigClOrdID(String origClOrdID) {
+		OrigClOrdID = origClOrdID;
+	}
+
+	public String getMsgType() {
+		return MsgType;
+	}
+
+	public void setMsgType(String msgType) {
+		MsgType = msgType;
+	}
+
 	public String getSymbol() {
 		return Symbol;
 	}
 
 	public void setSymbol(String symbol) {
 		Symbol = symbol;
+	}
+
+	public String getOrdType() {
+		return OrdType;
+	}
+
+	public void setOrdType(String ordType) {
+		OrdType = ordType;
+	}
+
+	public String getHandlInst() {
+		return HandlInst;
+	}
+
+	public void setHandlInst(String handlInst) {
+		HandlInst = handlInst;
 	}
 
 	public String getSide() {
@@ -63,20 +110,12 @@ public class Order {
 		Price = price;
 	}
 
-	public String getOrdType() {
-		return OrdType;
+	public String getCurrency() {
+		return Currency;
 	}
 
-	public void setOrdType(String ordType) {
-		OrdType = ordType;
-	}
-
-	public String getHandlInst() {
-		return HandlInst;
-	}
-
-	public void setHandlInst(String handlInst) {
-		HandlInst = handlInst;
+	public void setCurrency(String currency) {
+		Currency = currency;
 	}
 
 	public String getTransactTime() {
@@ -87,4 +126,12 @@ public class Order {
 		TransactTime = transactTime;
 	}
 
+	public String getSession() {
+		return Session;
+	}
+
+	public void setSession(String session) {
+		Session = session;
+	}
+	
 }
