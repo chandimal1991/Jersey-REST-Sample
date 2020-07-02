@@ -106,6 +106,20 @@ public class FIXServiceImpl implements FIXService {
 						ordMsg.setValue(Tag.TransactTime, "20200508-04:36:42");
 
 						session.sendAppMessage(ordMsg);
+						
+						Message ordMsgAmend = _engineFact.createMessage(MsgType.ORDER_SINGLE);
+
+						ordMsg.setValue(Tag.ClOrdID, "Cld-12345");
+						ordMsg.setValue(Tag.OrigClOrdID, "Cld-1234");
+						ordMsg.setValue(Tag.Symbol, "6758");
+						ordMsg.setValue(Tag.Side, "1");
+						ordMsg.setValue(Tag.OrderQty, "1100");
+						ordMsg.setValue(Tag.Price, "123.45");
+						ordMsg.setValue(Tag.OrdType, "2");
+						ordMsg.setValue(Tag.HandlInst, "3");
+						ordMsg.setValue(Tag.TransactTime, "20200508-04:36:42");
+
+						session.sendAppMessage(ordMsgAmend);
 
 						System.out.println("Executing sendOrder function==>" + sessionId);
 					}
