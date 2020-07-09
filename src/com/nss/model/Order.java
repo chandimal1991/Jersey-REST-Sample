@@ -21,6 +21,12 @@ public class Order {
 	private String TransactTime;
 	private String Session;
 	
+	
+	
+	public Order() {
+		
+	}
+
 	public Order(String clOrdID, String origClOrdID, String msgType, String symbol, String ordType, String handlInst,
 			String side, String orderQty, String price, String currency, String transactTime, String session) {
 		super();
