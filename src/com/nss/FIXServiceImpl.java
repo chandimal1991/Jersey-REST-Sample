@@ -2,9 +2,11 @@ package com.nss;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 
+import com.nss.database.Database;
 import com.nss.model.Order;
 
 import simplefix.Application;
@@ -20,6 +22,7 @@ public class FIXServiceImpl implements FIXService {
 	private static EngineFactory _engineFact;
 	private Engine _engine;
 	private ServletContext _servletContext;
+	private Map<String, Order> orders = Database.getOrders();
 
 	public FIXServiceImpl(ServletContext servletContext) {
 		_servletContext = servletContext;
@@ -52,18 +55,6 @@ public class FIXServiceImpl implements FIXService {
 	}
 
 	@Override
-	public ArrayList<String> getSessionList() throws IllegalArgumentException {
-		ArrayList<String> sessions = new ArrayList<String>();
-
-		for (Session session : _engine.getAllSessions()) {
-			sessions.add(session.getSenderCompID() + "<-->" + session.getTargetCompID());
-		}
-
-		Collections.sort(sessions);
-		return sessions;
-	}
-	
-	@Override
 	public ArrayList<com.nss.model.Session> getSessions() throws IllegalArgumentException {
 
 		ArrayList<com.nss.model.Session> sessions = new ArrayList<com.nss.model.Session>();
@@ -78,58 +69,6 @@ public class FIXServiceImpl implements FIXService {
 		}
 
 		return sessions;
-	}
-	
-	@Override
-	public void sendOrder(String sessionId) throws IllegalArgumentException {
-
-		try {
-
-			for (Session session : _engine.getAllSessions()) {
-				
-
-				if (sessionId.equals(session.getSenderCompID() + "<-->" + session.getTargetCompID())) {
-
-					if (quickfix.Session.lookupSession(session.getSenderCompID(), session.getTargetCompID())
-							.isLoggedOn()) {
-						
-
-						Message ordMsg = _engineFact.createMessage(MsgType.ORDER_SINGLE);
-
-						ordMsg.setValue(Tag.ClOrdID, "Cld-1234");
-						ordMsg.setValue(Tag.Symbol, "6758");
-						ordMsg.setValue(Tag.Side, "1");
-						ordMsg.setValue(Tag.OrderQty, "1000");
-						ordMsg.setValue(Tag.Price, "123.45");
-						ordMsg.setValue(Tag.OrdType, "2");
-						ordMsg.setValue(Tag.HandlInst, "3");
-						ordMsg.setValue(Tag.TransactTime, "20200508-04:36:42");
-
-						session.sendAppMessage(ordMsg);
-						
-						Message ordMsgAmend = _engineFact.createMessage(MsgType.ORDER_SINGLE);
-
-						ordMsg.setValue(Tag.ClOrdID, "Cld-12345");
-						ordMsg.setValue(Tag.OrigClOrdID, "Cld-1234");
-						ordMsg.setValue(Tag.Symbol, "6758");
-						ordMsg.setValue(Tag.Side, "1");
-						ordMsg.setValue(Tag.OrderQty, "1100");
-						ordMsg.setValue(Tag.Price, "123.45");
-						ordMsg.setValue(Tag.OrdType, "2");
-						ordMsg.setValue(Tag.HandlInst, "3");
-						ordMsg.setValue(Tag.TransactTime, "20200508-04:36:42");
-
-						session.sendAppMessage(ordMsgAmend);
-
-						System.out.println("Executing sendOrder function==>" + sessionId);
-					}
-				}
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 	}
 	
 	@Override
@@ -171,6 +110,16 @@ public class FIXServiceImpl implements FIXService {
 		return order;
 
 	}
+	
+	@Override
+	public ArrayList<Order> getOrders() {
+		return new ArrayList<Order>(orders.values());
+	};
+	
+	@Override
+	public void addOrder(Order order) {
+		orders.put(order.getClOrdID(),order);
+	}
 
 	private static class _Application implements Application {
 
@@ -193,6 +142,6 @@ public class FIXServiceImpl implements FIXService {
 			// TODO Auto-generated method stub
 
 		}
-	};
+	}
 
 }

@@ -11,7 +11,7 @@ public class Database {
 	
 	private static Map<Long,Message> messages = new HashMap<>();
 	private static Map<String,Profile> profiles = new HashMap<>();
-	private static Map<Long,Order> orders = new HashMap<>();
+	private static Map<String,Order> orders = new HashMap<>();
 	
 	public static Map<Long, Message> getMessages(){
 		return messages;
@@ -21,7 +21,7 @@ public class Database {
 		return profiles;
 	}
 	
-	public static Map<Long, Order> getOrders(){
+	public static Map<String, Order> getOrders(){
 		return orders;
 	}
 	

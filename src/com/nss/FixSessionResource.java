@@ -15,17 +15,6 @@ import com.nss.model.Session;
 public class FixSessionResource {
 	
 		@GET
-		@Path("/list")
-		@Produces(MediaType.APPLICATION_JSON)
-		public List<String> getSessionList(@Context ServletContext servletContext) {
-			
-			FIXService fixService = (FIXService) servletContext.getAttribute("FIX_Service");
-			
-			List<String> sessionList = fixService.getSessionList();
-			return sessionList;
-		}
-		
-		@GET
 		@Produces(MediaType.APPLICATION_JSON)
 		public List<Session> getSessions(@Context ServletContext servletContext) {
 			
