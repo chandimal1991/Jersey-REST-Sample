@@ -20,6 +20,7 @@ import com.nss.model.Session;
 public class FixOrderResource {
 	
 	@GET
+	@Path("/list")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Order> getOrders(@Context ServletContext servletContext) {
 		
@@ -28,7 +29,7 @@ public class FixOrderResource {
 		List<Order> orderList = fixService.getOrders();
 		
 		return orderList;
-	}		
+	}	
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
