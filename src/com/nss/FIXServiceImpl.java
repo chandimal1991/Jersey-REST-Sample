@@ -117,6 +117,11 @@ public class FIXServiceImpl implements FIXService {
 	};
 	
 	@Override
+	public Order getOrder(String ClOrdID) {
+		return orders.get(ClOrdID);
+	};
+	
+	@Override
 	public void addOrder(Order order) {
 		orders.put(order.getClOrdID(),order);
 	}

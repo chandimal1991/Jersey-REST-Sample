@@ -13,7 +13,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import com.nss.model.Order;
-import com.nss.model.Session;
 
 
 @Path("/order")
@@ -29,7 +28,17 @@ public class FixOrderResource {
 		List<Order> orderList = fixService.getOrders();
 		
 		return orderList;
-	}	
+	}
+	
+	@GET
+	@Path("/{orderId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Order getOrder(@PathParam("orderId") String orderId, @Context ServletContext servletContext) {
+		
+		FIXService fixService = (FIXService) servletContext.getAttribute("FIX_Service");
+		
+		return fixService.getOrder(orderId);
+	}
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
