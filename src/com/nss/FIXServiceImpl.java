@@ -2,11 +2,13 @@ package com.nss;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
 
 import com.nss.database.Database;
+import com.nss.model.Comment;
 import com.nss.model.Order;
 
 import simplefix.Application;
@@ -124,6 +126,11 @@ public class FIXServiceImpl implements FIXService {
 	@Override
 	public void addOrder(Order order) {
 		orders.put(order.getClOrdID(),order);
+	}
+	
+	public List<Order> getAllOrders(String orderID){
+		Map<String, Order> order = orders.get(orderID).getOrders();
+		return new ArrayList<Order>(order.values());
 	}
 
 	private static class _Application implements Application {

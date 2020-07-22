@@ -1,8 +1,12 @@
 package com.nss.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -20,8 +24,7 @@ public class Order {
 	private String Currency;
 	private String TransactTime;
 	private String Session;
-	
-	
+	private Map<String, Order> orders = new HashMap<>();
 	
 	public Order() {
 		
@@ -138,6 +141,15 @@ public class Order {
 
 	public void setSession(String session) {
 		Session = session;
+	}
+	
+	@XmlTransient
+	public Map<String, Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Map<String, Order> orders) {
+		this.orders = orders;
 	}
 	
 }
