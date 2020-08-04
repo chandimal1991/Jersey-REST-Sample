@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import com.nss.model.Comment;
 import com.nss.service.CommentService;
 
-@Path("/")
+@Path("/new")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class CommentResource {

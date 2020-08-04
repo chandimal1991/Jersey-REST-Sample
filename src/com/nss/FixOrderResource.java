@@ -50,5 +50,10 @@ public class FixOrderResource {
 		return fixService.sendOrder(order);
 
 	}
+	
+	@Path("/{orderId}/messages")
+	public FIXOrderMessageResource getFIXOrderMessageResource() {
+		return new FIXOrderMessageResource();
+	}
 
 }

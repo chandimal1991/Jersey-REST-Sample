@@ -1,15 +1,14 @@
 package com.nss;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
 
 import com.nss.database.Database;
-import com.nss.model.Comment;
 import com.nss.model.Order;
+import com.nss.model.OrderMessage;
 
 import simplefix.Application;
 import simplefix.Engine;
@@ -128,9 +127,23 @@ public class FIXServiceImpl implements FIXService {
 		orders.put(order.getClOrdID(),order);
 	}
 	
-	public List<Order> getAllOrders(String orderID){
+	/*public List<Order> getAllOrders(String orderID){
 		Map<String, Order> order = orders.get(orderID).getOrders();
 		return new ArrayList<Order>(order.values());
+	}*/
+	
+	@Override
+	public List<OrderMessage> getAllOrderMessages(String orderId){
+		Map<Long, OrderMessage> orderMessages = orders.get(orderId).getMessages();
+		return new ArrayList<OrderMessage>(orderMessages.values());
+	}
+	
+	@Override
+	public OrderMessage addOrderMessage(String orderId, OrderMessage orderMessage) {
+		Map<Long, OrderMessage> orderMessages = orders.get(orderId).getMessages();
+		orderMessage.setId(orderMessages.size() + 1);
+		orderMessages.put(orderMessage.getId(),orderMessage);
+		return orderMessage;
 	}
 
 	private static class _Application implements Application {
