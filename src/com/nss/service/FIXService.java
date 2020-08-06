@@ -1,4 +1,4 @@
-package com.nss;
+package com.nss.service;
 
 import java.util.ArrayList;
 import java.util.List;

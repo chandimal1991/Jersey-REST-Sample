@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import com.nss.model.OrderMessage;
+import com.nss.service.FIXService;
 
 @Path("/")
 public class FIXOrderMessageResource {

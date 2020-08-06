@@ -4,6 +4,9 @@ import javax.servlet.ServletContext;
 
 import org.glassfish.jersey.servlet.ServletContainer;
 
+import com.nss.service.FIXService;
+import com.nss.service.FIXServiceImpl;
+
 public class MyServletContainer extends ServletContainer {
 	/**
 	 * 

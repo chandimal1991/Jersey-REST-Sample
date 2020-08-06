@@ -10,6 +10,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import com.nss.model.Session;
+import com.nss.service.FIXService;
 
 @Path("/sessions")
 public class FixSessionResource {
