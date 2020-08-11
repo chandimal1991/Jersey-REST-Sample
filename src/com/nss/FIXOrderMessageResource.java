@@ -44,4 +44,15 @@ public class FIXOrderMessageResource {
         
     }
     
+    @Path("/ordermsg")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public OrderMessage sendOrderMessage(OrderMessage orderMessage, @Context ServletContext servletContext) {
+        
+        FIXService fixService = (FIXService) servletContext.getAttribute("FIX_Service");
+        return fixService.sendOrderMessage(orderMessage);
+        
+    }
+    
 }
