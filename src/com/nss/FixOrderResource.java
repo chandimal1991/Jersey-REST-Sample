@@ -42,7 +42,7 @@ public class FixOrderResource {
         return fixService.getOrder(orderId);
     }
     
-    @POST
+    /*@POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Order sendOrder(Order order, @Context ServletContext servletContext) {
@@ -53,7 +53,7 @@ public class FixOrderResource {
         fixService.addOrder(order);
         return fixService.sendOrder(order);
         
-    }
+    }*/
     
     // TODO why you need this method ? if not please remove it.
     @Path("/{orderId}/messages")

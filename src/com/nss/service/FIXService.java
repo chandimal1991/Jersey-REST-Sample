@@ -27,7 +27,7 @@ public interface FIXService {
     void addOrder(Order order);
     
     // TODO we do not send order, we send message
-    Order sendOrder(Order order);
+    //Order sendOrder(Order order);
     
     OrderMessage sendOrderMessage(OrderMessage orderMessage);
 }
