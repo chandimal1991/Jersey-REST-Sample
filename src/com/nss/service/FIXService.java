@@ -28,4 +28,6 @@ public interface FIXService {
     
     // TODO we do not send order, we send message
     Order sendOrder(Order order);
+    
+    OrderMessage sendOrderMessage(OrderMessage orderMessage);
 }

@@ -76,31 +76,31 @@ public class FIXServiceImpl implements FIXService {
     }
     
     @Override
-    public Order sendOrder(Order order) throws IllegalArgumentException {
+    public OrderMessage sendOrderMessage(OrderMessage orderMessage) throws IllegalArgumentException {
         
         try {
             
             for ( Session session : _engine.getAllSessions() ) {
                 
-                if ( order.getSession().equals(session.getSenderCompID() + "<-->" + session.getTargetCompID()) ) {
+                if ( orderMessage.getSession().equals(session.getSenderCompID() + "<-->" + session.getTargetCompID()) ) {
                     
                     if ( quickfix.Session.lookupSession(session.getSenderCompID(), session.getTargetCompID())
                             .isLoggedOn() ) {
                         
                         Message ordMsg = _engineFact.createMessage(MsgType.ORDER_SINGLE);
                         
-                        ordMsg.setValue(Tag.ClOrdID, order.getClOrdID());
-                        ordMsg.setValue(Tag.Symbol, order.getSymbol());
-                        ordMsg.setValue(Tag.Side, order.getSide());
-                        ordMsg.setValue(Tag.OrderQty, order.getOrderQty());
-                        ordMsg.setValue(Tag.Price, order.getPrice());
-                        ordMsg.setValue(Tag.OrdType, order.getOrdType());
-                        ordMsg.setValue(Tag.HandlInst, order.getHandlInst());
-                        ordMsg.setValue(Tag.TransactTime, order.getTransactTime());
+                        ordMsg.setValue(Tag.ClOrdID, orderMessage.getClOrdID());
+                        ordMsg.setValue(Tag.Symbol, orderMessage.getSymbol());
+                        ordMsg.setValue(Tag.Side, orderMessage.getSide());
+                        ordMsg.setValue(Tag.OrderQty, orderMessage.getOrderQty());
+                        ordMsg.setValue(Tag.Price, orderMessage.getPrice());
+                        ordMsg.setValue(Tag.OrdType, orderMessage.getOrdType());
+                        ordMsg.setValue(Tag.HandlInst, orderMessage.getHandlInst());
+                        ordMsg.setValue(Tag.TransactTime, orderMessage.getTransactTime());
                         
                         session.sendAppMessage(ordMsg);
                         
-                        System.out.println("Executing sendOrder function==>" + order.getSession());
+                        System.out.println("Executing sendOrder function==>" + orderMessage.getSession());
                         
                     }
                 }
@@ -109,7 +109,7 @@ public class FIXServiceImpl implements FIXService {
         } catch ( Exception e ) {
             e.printStackTrace();
         }
-        return order;
+        return orderMessage;
         
     }
     
