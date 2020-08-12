@@ -170,11 +170,5 @@ public class FIXServiceImpl implements FIXService {
             
         }
     }
-
-	@Override
-	public Order sendOrder(Order order) {
-		// TODO Auto-generated method stub
-		return null;
-	}
     
 }
