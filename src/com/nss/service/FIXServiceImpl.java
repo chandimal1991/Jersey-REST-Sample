@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 
-import com.nss.database.Database;
+import com.nss.database.OrderStore;
 import com.nss.model.Order;
 import com.nss.model.OrderMessage;
 
@@ -26,7 +26,7 @@ public class FIXServiceImpl implements FIXService {
     
     // TODO One simple Map can not solve the problem, we need one OrderStore
     // class
-    private Map<String, Order>   orders = Database.getOrders();
+    private Map<String, OrderMessage>   orderMessages = OrderStore.getOrderMessages();
     
     public FIXServiceImpl(ServletContext servletContext) {
         _servletContext = servletContext;
@@ -99,6 +99,7 @@ public class FIXServiceImpl implements FIXService {
                         ordMsg.setValue(Tag.TransactTime, orderMessage.getTransactTime());
                         
                         session.sendAppMessage(ordMsg);
+                        orderMessages.put(orderMessage.getClOrdID(), orderMessage);
                         
                         System.out.println("Executing sendOrder function==>" + orderMessage.getSession());
                         
@@ -113,6 +114,7 @@ public class FIXServiceImpl implements FIXService {
         
     }
     
+    /*
     @Override
     public ArrayList<Order> getOrders() {
         return new ArrayList<Order>(orders.values());
@@ -128,11 +130,11 @@ public class FIXServiceImpl implements FIXService {
         orders.put(order.getClOrdID(), order);
     }
     
-    /*
+    
      * public List<Order> getAllOrders(String orderID){ Map<String, Order> order
      * = orders.get(orderID).getOrders(); return new
      * ArrayList<Order>(order.values()); }
-     */
+     
     
     @Override
     public List<OrderMessage> getAllOrderMessages(String orderId) {
@@ -147,6 +149,8 @@ public class FIXServiceImpl implements FIXService {
         orderMessages.put(orderMessage.getId(), orderMessage);
         return orderMessage;
     }
+    
+    */
     
     private static class _Application implements Application {
         
@@ -170,5 +174,23 @@ public class FIXServiceImpl implements FIXService {
             
         }
     }
-    
+
+	@Override
+	public ArrayList<Order> getOrders() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Order getOrder(String ClOrdID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderMessage> getAllOrderMessages(String orderId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+  
 }

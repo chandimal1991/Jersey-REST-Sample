@@ -7,8 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class OrderMessage {
-    // TODO why we need this id? who will set/manage the value ?
-    private long   id;
+	
     private String ClOrdID;
     private String OrigClOrdID;
     private String MsgType;
@@ -26,11 +25,10 @@ public class OrderMessage {
         
     }
     
-    public OrderMessage(long id, String clOrdID, String origClOrdID, String msgType, String symbol, String ordType,
+    public OrderMessage(String clOrdID, String origClOrdID, String msgType, String symbol, String ordType,
             String handlInst, String side, String orderQty, String price, String currency, String transactTime,
             String session) {
         super();
-        this.id = id;
         ClOrdID = clOrdID;
         OrigClOrdID = origClOrdID;
         MsgType = msgType;
@@ -43,14 +41,6 @@ public class OrderMessage {
         Currency = currency;
         TransactTime = transactTime;
         Session = session;
-    }
-    
-    public long getId() {
-        return id;
-    }
-    
-    public void setId(long id) {
-        this.id = id;
     }
     
     public String getClOrdID() {

@@ -3,9 +3,7 @@ package com.nss;
 import java.util.List;
 
 import javax.servlet.ServletContext;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -41,24 +39,5 @@ public class FixOrderResource {
         
         return fixService.getOrder(orderId);
     }
-    
-    /*@POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Order sendOrder(Order order, @Context ServletContext servletContext) {
-        
-        FIXService fixService = (FIXService) servletContext.getAttribute("FIX_Service");
-        
-        // TODO addOrder should be done in sendOrder of Service class
-        fixService.addOrder(order);
-        return fixService.sendOrder(order);
-        
-    }*/
-    
-    // TODO why you need this method ? if not please remove it.
-    @Path("/{orderId}/messages")
-    public FIXOrderMessageResource getFIXOrderMessageResource() {
-        return new FIXOrderMessageResource();
-    }
-    
+      
 }
