@@ -1,6 +1,8 @@
 package com.nss.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -31,7 +33,7 @@ public class Order {
     private String                  Session;
     
     // TODO why we use Map ? why not List
-    private Map<Long, OrderMessage> messages = new HashMap<>();
+    private List<OrderMessage> messages = new ArrayList<OrderMessage>();
     
     public Order() {
         
@@ -151,11 +153,11 @@ public class Order {
     }
     
     @XmlTransient
-    public Map<Long, OrderMessage> getMessages() {
+    public List<OrderMessage> getMessages() {
         return messages;
     }
     
-    public void setMessages(Map<Long, OrderMessage> messages) {
+    public void setMessages(List<OrderMessage> messages) {
         this.messages = messages;
     }
     
