@@ -21,11 +21,11 @@ public class FixOrderResource {
     @GET
     @Path("/list")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Order> getOrders(@Context ServletContext servletContext) {
+    public List<Order> getAllOrders(@Context ServletContext servletContext) {
         
         FIXService fixService = (FIXService) servletContext.getAttribute("FIX_Service");
         
-        List<Order> orderList = fixService.getOrders();
+        List<Order> orderList = fixService.getAllOrders();
         
         return orderList;
     }

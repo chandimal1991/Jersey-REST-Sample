@@ -12,11 +12,13 @@ public interface FIXService {
     
     List<Session> getSessions();
     
-    List<Order> getOrders();
+    List<Order> getAllOrders();
     
     Order getOrder(String ClOrdID);
     
-    List<OrderMessage> getAllOrderMessages(String orderId);
+    List<OrderMessage> getAllOrderMessages();
+    
+    List<OrderMessage> getOrderMessages(String orderId);
     
     OrderMessage sendOrderMessage(OrderMessage orderMessage);
 }

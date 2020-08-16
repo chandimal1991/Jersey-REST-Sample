@@ -3,6 +3,7 @@ package com.nss.database;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.nss.model.Order;
 import com.nss.model.OrderMessage;
 
 public class OrderStore {
@@ -19,8 +20,20 @@ public class OrderStore {
     // difficult I will give more hint.
 	
 	private static Map<String, OrderMessage> orderMessages = new HashMap<>();
+	private static Map<String, Order> orders = new HashMap<>();
 	
-	public static Map<String, OrderMessage> getOrderMessages() {
+	// 1. get all orders
+	public static Map<String, Order> getAllOrders() {
+	     return orders;
+	}
+	
+	// 2. get all messages of all orders
+	public static Map<String, OrderMessage> getAllOrderMessages() {
+        return orderMessages;
+    }
+	
+	// 3. get all messages of one order by clorderid
+	public static Map<String, OrderMessage> getOrderMessages(String orderId) {
         return orderMessages;
     }
 }

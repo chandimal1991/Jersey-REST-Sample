@@ -27,7 +27,16 @@ public class FIXOrderMessageResource {
         
         FIXService fixService = (FIXService) servletContext.getAttribute("FIX_Service");
         
-        return fixService.getAllOrderMessages(orderId);
+        return fixService.getOrderMessages(orderId);
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<OrderMessage> geAlltMessages(@Context ServletContext servletContext) {
+        
+        FIXService fixService = (FIXService) servletContext.getAttribute("FIX_Service");
+        
+        return fixService.getAllOrderMessages();
     }
     
     

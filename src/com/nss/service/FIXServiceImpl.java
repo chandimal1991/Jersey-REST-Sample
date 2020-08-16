@@ -26,7 +26,7 @@ public class FIXServiceImpl implements FIXService {
     
     // TODO One simple Map can not solve the problem, we need one OrderStore
     // class
-    private Map<String, OrderMessage>   orderMessages = OrderStore.getOrderMessages();
+    private Map<String, OrderMessage>   orderMessages = OrderStore.getAllOrderMessages();
     
     public FIXServiceImpl(ServletContext servletContext) {
         _servletContext = servletContext;
@@ -176,19 +176,25 @@ public class FIXServiceImpl implements FIXService {
     }
 
 	@Override
-	public ArrayList<Order> getOrders() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Order getOrder(String ClOrdID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<OrderMessage> getAllOrderMessages(String orderId) {
+	public List<OrderMessage> getAllOrderMessages() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderMessage> getOrderMessages(String orderId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getAllOrders() {
 		// TODO Auto-generated method stub
 		return null;
 	}
